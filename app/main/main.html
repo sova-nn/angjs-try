@@ -1,0 +1,73 @@
+<h2>Main</h2>
+<div class="container">
+    <div class="row justify-content-between">
+        <div class="card col-lg-6 col-md-12" ng-controller="ViewMainCtrl">
+            <h5><b>Телефонная книга</b><br><small>количество записей: <span>{{myFactory.getItems().length}}</small> </span></h5>
+            <table class="table">
+                <thead>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Number</th>
+                <th>Редактировать</th>
+                <th>Удалить</th>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in myFactory.getItems()" ng-class="$even ? 'even' : 'odd'">
+                    <td>{{item.id}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.value}}</td>
+                    <td><button type="button" class="btn btn-primary btn-sm">Редактировать</button></td>
+                    <td><button type="button" class="btn btn-danger btn-sm" ng-click="myFactory.delete(item)">Удалить</button></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="form col-lg-5 col-md-12" ng-controller="ViewMainCtrl">
+            <div ng-controller="CountComponentCtrl">
+                Количество записей в телефонной книге: {{myFactory.getItems().length}}
+
+            </div>
+            <div ng-controller='InputCtrl'>
+                <form name="myForm" novalidate ng-submit="addItem(newUser, myForm)">
+                    <div class="error" ng-show="showError">
+                        {{getError(myForm.userName.$error)}}
+                    </div>
+                    <div class="form-group">
+                        <label>Введите имя:</label>
+                        <input name="userName"
+                               type="text"
+                               class="form-control"
+                               ng-model="newUser.name"
+                               required>
+                    </div>
+                    <div class="form-group">
+                        <label>Введите номер телефона из 7 цифр:</label>
+                        <input name="userName"
+                               type="text"
+                               class="form-control"
+                               required
+                               ng-model="newUser.number"
+                               ng-pattern="/^\d\d\d\d\d\d\d$/"
+                        >
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input name="agreed" type="checkbox" required>
+                            Я все правильно ввел
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">
+                        Добавить запись
+                    </button>
+                    <small class="error" ng-show="showError">
+                        Для добавления записи согласитесь с правильностью ввода
+                    </small>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+
+

@@ -1,0 +1,91 @@
+/* app css stylesheet */
+@import "lib/bootstrap/scss/bootstrap";
+
+.menu {
+  list-style: none;
+  border-bottom: 0.1em solid black;
+  margin-bottom: 2em;
+  padding: 0 0 0.5em;
+}
+
+.menu:before {
+  content: "[";
+}
+
+.menu:after {
+  content: "]";
+}
+
+.menu > li {
+  display: inline;
+}
+
+.menu > li + li:before {
+  content: "|";
+  padding-right: 0.3em;
+}
+
+.form {
+  border: 1px dashed lightseagreen;
+  border-radius: 15px;
+  background-color: lightgoldenrodyellow;
+  max-height: 315px;
+}
+
+@include media-breakpoint-down(sm) {
+  .form {
+    display: none;
+  }
+}
+
+@include media-breakpoint-down(lg) {
+  .card {
+    margin: 10px 0;
+    .even {
+      background-color: lightcyan;
+    }
+
+    .odd {
+      background-color: lightgoldenrodyellow;
+    }
+
+    thead {
+      background-color: lightgrey;
+    }
+  }
+}
+
+
+
+@include media-breakpoint-up(lg) {
+   .card {
+     min-width: 500px;
+     min-height: 150px;
+     max-width: 700px;
+     max-height: 800px;
+     border: 1px solid #555555;
+     background-color: lightgrey;
+     border-radius: 10px;
+
+     .even {
+       background-color: lightblue;
+     }
+
+     .odd {
+       background-color: lightcyan;
+     }
+
+     thead {
+       background-color: lightskyblue;
+     }
+   }
+ }
+
+.error {
+  color: red;
+  font-weight: bold;
+}
+
+
+
+
