@@ -2,14 +2,26 @@
 
 // Declare app level module which depends on views, and core components
 angular.module('myApp', [
-  'ngRoute',
-  'ui.bootstrap',
-  'myApp.main',
-  'myApp.form',
-  'myApp.version'
+    // 'ngRouter',
+    'ui.router',
+    'myApp.main',
+    'myApp.form',
+    'myApp.version',
+    'ui.bootstrap'
 ]).
-config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
-  $locationProvider.hashPrefix('!');
+config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
+    $urlRouterProvider.otherwise('/index');
 
-  $routeProvider.otherwise({redirectTo: '/main'});
+  $stateProvider
+      .state('form', {
+        url: "/form",
+        templateUrl: "/form/form.html"
+      });
+
+    $stateProvider
+        .state('main', {
+            url: "/main",
+            templateUrl: "/main/main.html"
+        });
+
 }]);

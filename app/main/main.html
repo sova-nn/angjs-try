@@ -1,8 +1,8 @@
 <h2>Main</h2>
 <div class="container">
     <div class="row justify-content-between">
-        <div class="card col-lg-6 col-md-12" ng-controller="ViewMainCtrl">
-            <h5><b>Телефонная книга</b><br><small>количество записей: <span>{{myFactory.getItems().length}}</small> </span></h5>
+        <div class="card col-lg-6 col-md-12" ng-controller="ViewMainCtrl as vm">
+            <h5><b>Телефонная книга</b><br><small>количество записей: <span>{{vm.myFactory.getItems().length}}</small> </span></h5>
             <table class="table">
                 <thead>
                 <th>Id</th>
@@ -12,12 +12,13 @@
                 <th>Удалить</th>
                 </thead>
                 <tbody>
-                <tr ng-repeat="item in myFactory.getItems()" ng-class="$even ? 'even' : 'odd'">
+                <tr ng-repeat="item in vm.myFactory.getItems()" ng-class="$even ? 'even' : 'odd'">
                     <td>{{item.id}}</td>
-                    <td>{{item.name}}</td>
+                    <td ng-if="!item.showMod">{{item.name}}</td>
+                    <td ng-if="item.showMod"><input value="{{item.name}}" size="6"></td>
                     <td>{{item.value}}</td>
-                    <td><button type="button" class="btn btn-primary btn-sm">Редактировать</button></td>
-                    <td><button type="button" class="btn btn-danger btn-sm" ng-click="myFactory.delete(item)">Удалить</button></td>
+                    <td><button type="button" class="btn btn-primary btn-sm" ng-click="vm.toggle(item)">{{vm.modButtonText}}</button></td>
+                    <td><button type="button" class="btn btn-danger btn-sm" ng-click="vm.myFactory.delete(item)">Удалить</button></td>
                 </tr>
                 </tbody>
             </table>

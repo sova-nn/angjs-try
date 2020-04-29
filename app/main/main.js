@@ -9,9 +9,9 @@ angular.module('myApp.main', ['ngRoute', 'ui.bootstrap'])
     }])
     .factory('myFactory', function () {
         let items = [
-            {id: '0', name: 'Марина', value: '1111111'},
-            {id: '1', name: 'Ирина', value: '2222222'},
-            {id: '2', name: 'Азар', value: '3333333'},
+            {id: '0', name: 'Марина', value: '1111111', showMod: false},
+            {id: '1', name: 'Ирина', value: '2222222', showMod: false},
+            {id: '2', name: 'Азар', value: '3333333', showMod: false},
         ];
         return {
             getItems: function () {
@@ -24,7 +24,13 @@ angular.module('myApp.main', ['ngRoute', 'ui.bootstrap'])
         }
     })
     .controller('ViewMainCtrl', function ($scope, myFactory) {
-        $scope.myFactory = myFactory;
+        this.myFactory = myFactory;
+        this.showMod = false;
+        this.modButtonText = 'Редактировать';
+        this.toggle = (item) => {
+            item.showMod = !item.showMod;
+            return this.modButtonText = item.showMod ? 'Сохранить' : 'Редактировать';
+        }
     })
     .controller('CountComponentCtrl', function ($scope, myFactory) {
         $scope.myFactory = myFactory;
